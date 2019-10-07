@@ -1,0 +1,8 @@
+do a "module load gcc libFHBRS" once a session to get the latest version of the GNU compiler loaded and some utility functions used in the program
+
+make : compile the program
+make run : run the program with a test data set
+
+Submit the job with "sbatch job_heat.sh"
+
+The checksum should always be the same.

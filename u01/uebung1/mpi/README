@@ -1,0 +1,8 @@
+Do once a session "module load gcc openmpi/gnu libFHBRS"
+
+
+This is a template directory for your MPI program in assignment 1.
+
+Name your source file ring.c (prototype available) and call "make" to compile your program.
+
+Then run your program with the batch script "sbatch job_mpi.sh".

@@ -1,0 +1,31 @@
+In the Makefile you may choose between three different compilers. The
+Makefile as it is uses the GNU compiler gcc. To switch to another
+compiler comment the two lines for the GNU compiler with a "#" in the
+first column and uncomment the two lines for the compiler you want to
+use.
+
+You must load once a session the appropriate compiler module, e.g.,
+- module load gcc
+- module load intel-compiler
+- module load pgi
+
+and do a "module load libFHBRS"
+
+
+You may add additional compiler flags in the line with the appropriate
+CFLAGS for the chosen compiler.
+
+
+Do the following commands to run a test after you changed something:
+    make clean; make run
+
+"make clean" is necessary to force a recompilation of all files
+(e.g. if you switched to another compiler).
+
+
+Source files:
+- main.c: driver program (initialization, prefix call, time measurements)
+- prefix.h: type definitions
+- prefix.c: implementation of prefix operation
+
+You may change source code only in prefix.c!
