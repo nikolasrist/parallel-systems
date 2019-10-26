@@ -1,0 +1,17 @@
+Do once a session "module load gcc openmpi/gnu libFHBRS"
+
+
+This is a template directory for your MPI program in assignment 1.
+
+Name your source file ring.c (prototype available) and call "make" to compile your program.
+
+Then run your program with the batch script "sbatch job_mpi.sh".
+
+The program follows these steps:
+
+1. Each process initialises MPI and needed variables.
+2. The Master fills his vector with his number at position 0 and send it to process 1.
+3. Each middle process fills the vector at his specific position in the vector and sends it to the next process.
+4. The last vector adds his number and sends the filled vector to the first process 0.
+5. The process 0 checks the somes of the whole vector and an addition of all numbers between 1 and the number of processes.
+6. If both sums are equal the run is successful.
