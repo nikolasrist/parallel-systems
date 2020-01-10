@@ -1,0 +1,5 @@
+Do once a session:
+    module load gcc openmpi/gnu
+
+For your solution additionally:
+    module load metis/5.1.0-32

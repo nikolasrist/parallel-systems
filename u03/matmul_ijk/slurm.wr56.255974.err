@@ -1,0 +1,20 @@
++ module load gcc pin dinero4
+++ /usr/bin/modulecmd bash load gcc pin dinero4
++ eval
++ TOOL=/usr/local/pin/pin-3.7/source/tools/memtrace/obj-intel64/memtrace.so
++ echo 'Running with PORT=27001,PROGRAM=matmul.exe,PROGRAM_ARGS=300,DIR=300/l1dsize,FILE=2k.txt,DINERO_ARGS=-l1-dsize 2k -l2-usize 256k -l3-usize 32m -l1-dbsize 64 -l2-ubsize 64 -l3-ubsize 64 -l1-dassoc 8 -l2-uassoc 8 -l3-uassoc 128'
+Running with PORT=27001,PROGRAM=matmul.exe,PROGRAM_ARGS=300,DIR=300/l1dsize,FILE=2k.txt,DINERO_ARGS=-l1-dsize 2k -l2-usize 256k -l3-usize 32m -l1-dbsize 64 -l2-ubsize 64 -l3-ubsize 64 -l1-dassoc 8 -l2-uassoc 8 -l3-uassoc 128
++ mkdir -p output/300/l1dsize
++ cd output/300/l1dsize
++ export PIN_ON_SOCKET=27001
++ PIN_ON_SOCKET=27001
++ ulimit -s 10000000
++ sleep 10
++ pin -t /usr/local/pin/pin-3.7/source/tools/memtrace/obj-intel64/memtrace.so -- /home/nglase2s/assignments/u3/matmul/matmul.exe 300
++ memtrace_client.exe localhost 27001
++ dineroIV -l1-dsize 2k -l2-usize 256k -l3-usize 32m -l1-dbsize 64 -l2-ubsize 64 -l3-ubsize 64 -l1-dassoc 8 -l2-uassoc 8 -l3-uassoc 128
+
+real	0m31.321s
+user	0m0.795s
+sys	0m1.313s
++ exit

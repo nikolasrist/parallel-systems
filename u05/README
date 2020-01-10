@@ -1,0 +1,9 @@
+Do once per session a:
+    module load intel compiler
+
+Compile with:
+    make
+
+Submit the batch job with:
+       sbatch job_loopsched.sh
+

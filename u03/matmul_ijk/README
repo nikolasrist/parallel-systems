@@ -1,0 +1,14 @@
+- do once a "module load gcc"
+- call "make"
+- use port 27000-32000 in steps of 1000 (dependend on ijk, ikj, jik, jki, kij, kji) in mkjobs.sh
+  example: for variant ikj use port 28000
+
+
+Uncomment in main() the call for your matmul version,
+Comment in main() all calls to other matmul versions,
+such that only your kernel gets called.
+
+program arguments:
+1) 300
+2) 512
+3) 1000 

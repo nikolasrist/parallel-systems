@@ -1,0 +1,28 @@
++ module load gcc pin dinero4
+++ /usr/bin/modulecmd bash load gcc pin dinero4
++ eval LD_LIBRARY_PATH=/usr/local/dinero4:/usr/local/pin/pin-3.7/source/tools/memtrace/obj-intel64:/usr/local/gcc/gcc-8.1.0/lib64:/usr/local/gcc/gcc-8.1.0/lib:/usr/local/gcc/gmp-6.1.2/lib:/usr/local/gcc/isl-0.19/lib:/usr/local/gcc/mpc-1.1.0/lib:/usr/local/gcc/mpfr-4.0.1/lib:/usr/local/slurm/slurm-18.08.3/lib:/usr/local/lib: ';export' 'LD_LIBRARY_PATH;LOADEDMODULES=slurm/default:gcc/default:pin/default:dinero4/default' ';export' 'LOADEDMODULES;PATH=/usr/local/dinero4:/usr/local/pin/pin-3.7:/usr/local/pin/pin_appl:/usr/local/gcc/gcc-8.1.0/bin:/usr/local/slurm/slurm-18.08.3/bin:/usr/local/bin:/usr/lib64/qt-3.3/bin:/home/nglase2s/perl5/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/nglase2s/bin' ';export' 'PATH;_LMFILES_=/usr/local/modules/modulesfiles/slurm/default:/usr/local/modules/modulesfiles/gcc/default:/usr/local/modules/modulesfiles/pin/default:/usr/local/modules/modulesfiles/dinero4/default' ';export' '_LMFILES_;'
+++ LD_LIBRARY_PATH=/usr/local/dinero4:/usr/local/pin/pin-3.7/source/tools/memtrace/obj-intel64:/usr/local/gcc/gcc-8.1.0/lib64:/usr/local/gcc/gcc-8.1.0/lib:/usr/local/gcc/gmp-6.1.2/lib:/usr/local/gcc/isl-0.19/lib:/usr/local/gcc/mpc-1.1.0/lib:/usr/local/gcc/mpfr-4.0.1/lib:/usr/local/slurm/slurm-18.08.3/lib:/usr/local/lib:
+++ export LD_LIBRARY_PATH
+++ LOADEDMODULES=slurm/default:gcc/default:pin/default:dinero4/default
+++ export LOADEDMODULES
+++ PATH=/usr/local/dinero4:/usr/local/pin/pin-3.7:/usr/local/pin/pin_appl:/usr/local/gcc/gcc-8.1.0/bin:/usr/local/slurm/slurm-18.08.3/bin:/usr/local/bin:/usr/lib64/qt-3.3/bin:/home/nglase2s/perl5/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/nglase2s/bin
+++ export PATH
+++ _LMFILES_=/usr/local/modules/modulesfiles/slurm/default:/usr/local/modules/modulesfiles/gcc/default:/usr/local/modules/modulesfiles/pin/default:/usr/local/modules/modulesfiles/dinero4/default
+++ export _LMFILES_
++ TOOL=/usr/local/pin/pin-3.7/source/tools/memtrace/obj-intel64/memtrace.so
++ echo 'Running with PORT=28164,PROGRAM=matmul.exe,PROGRAM_ARGS=1000,DIR=1000/l2uassoc,FILE=64.txt,DINERO_ARGS=-l1-dsize 32k -l2-usize 256k -l3-usize 32m -l1-dbsize 64 -l2-ubsize 64 -l3-ubsize 64 -l1-dassoc 8 -l2-uassoc 64 -l3-uassoc 128'
+Running with PORT=28164,PROGRAM=matmul.exe,PROGRAM_ARGS=1000,DIR=1000/l2uassoc,FILE=64.txt,DINERO_ARGS=-l1-dsize 32k -l2-usize 256k -l3-usize 32m -l1-dbsize 64 -l2-ubsize 64 -l3-ubsize 64 -l1-dassoc 8 -l2-uassoc 64 -l3-uassoc 128
++ mkdir -p output/1000/l2uassoc
++ cd output/1000/l2uassoc
++ export PIN_ON_SOCKET=28164
++ PIN_ON_SOCKET=28164
++ ulimit -s 10000000
++ sleep 10
++ pin -t /usr/local/pin/pin-3.7/source/tools/memtrace/obj-intel64/memtrace.so -- /home/nglase2s/assignments/u3/matmul_ikj/matmul.exe 1000
++ memtrace_client.exe localhost 28164
++ dineroIV -l1-dsize 32k -l2-usize 256k -l3-usize 32m -l1-dbsize 64 -l2-ubsize 64 -l3-ubsize 64 -l1-dassoc 8 -l2-uassoc 64 -l3-uassoc 128
+
+real	0m31.056s
+user	0m0.700s
+sys	0m0.998s
++ exit

@@ -1,0 +1,206 @@
+You can develop and test your code on wr0.
+The final measurements are done on wr43 (see job script).
+
+Do once per session (to get the path for the MKL library)
+   module load intel-compiler
+
+Compile:
+   make
+
+Run for test purposes on wr0:
+   make run
+
+Run for final results:
+   sbatch job_matmul.sh
+
+
+Documentation:
+
+1. step - change reordering to ijk
+   RESULT:  optimized:    0.592 s,    91.077 GFLOPS
+            your:       136.400 s,     0.395 GFLOPS
+            original:    71.359 s,     0.756 GFLOPS
+
+2. step - iterate in blocks over matrix
+   tiles=500
+      optimized:  0.556 s,    96.993 GFLOPS
+      your:       33.221 s,     1.624 GFLOPS
+      original:   70.214 s,     0.768 GFLOPS
+
+3. step - introduce tmp variable
+   tiles=500
+      optimized:  0.563 s,    95.762 GFLOPS
+      your:       30.531 s,     1.767 GFLOPS
+      original:   69.040 s,     0.781 GFLOPS
+
+4. step - decrease tile size
+   tiles=50
+      optimized:     0.570 s,    94.572 GFLOPS
+      your:          22.024 s,     2.449 GFLOPS
+      original:      69.326 s,     0.778 GFLOPS
+
+5. step - decrease tile size
+   tiles=100
+      optimized:     0.583 s,    92.569 GFLOPS
+      your:          25.907 s,     2.082 GFLOPS
+      original:      69.543 s,     0.776 GFLOPS
+
+6. step - change inner ordering to ikj
+   tiles=50
+      optimized:     0.559 s,    96.449 GFLOPS
+      your:          23.734 s,     2.273 GFLOPS
+      original:      71.992 s,     0.749 GFLOPS
+
+7. step - change outer ordering to ikj
+   tiles=50
+      optimized:     0.571 s,    94.461 GFLOPS
+      your:          23.874 s,     2.260 GFLOPS
+      original:      69.836 s,     0.772 GFLOPS
+
+8. step - get back to order ijk and introduce tmp variable
+   tiles=50
+      optimized:     0.557 s,    96.809 GFLOPS
+      your:          22.274 s,     2.422 GFLOPS
+      original:      79.269 s,     0.681 GFLOPS
+
+9. step - set tiles to square root of cache size
+   tiles=sqrt(64000) = 252
+      optimized:     0.571 s,    94.416 GFLOPS
+      your:          28.588 s,     1.887 GFLOPS
+      original:      71.711 s,     0.752 GFLOPS
+
+10. step - set tiles to correct square root of cache size
+   tiles=sqrt(32000) = 178
+   optimized:     0.565 s,    95.437 GFLOPS
+      your:    27.980 s,     1.928 GFLOPS
+  original:    71.574 s,     0.754 GFLOPS
+
+11. step - set tiles to correct square root of cache size
+   tiles=sqrt(32000) = 179
+      optimized:        0.568 s,    94.960 GFLOPS
+      your:             27.715 s,     1.946 GFLOPS
+      original:         72.016 s,     0.749 GFLOPS
+
+12. step - set tiles to correct square root of cache size and do not block i row for wr43 and test 
+   job number: 263655
+   tiles=sqrt(32000) = 179
+    optimized:     2.646 s,    20.391 GFLOPS
+      your:    32.402 s,     1.665 GFLOPS
+   original:   173.120 s,     0.312 GFLOPS
+
+13. step - block i row again, use sqrt(32kb)-n as tile size
+   job number:263657
+   stopped!
+
+14. step - block i row again, use sqrt(32kb/8) as tile size
+   job number:263660
+   optimized:     2.669 s,    20.211 GFLOPS
+      your:    32.970 s,     1.636 GFLOPS
+  original:   173.065 s,     0.312 GFLOPS
+
+15. step - unrolling of loop twofold - 256 tile size
+ optimized:     0.577 s,    93.472 GFLOPS
+      your:    15.862 s,     3.401 GFLOPS
+  original:    72.613 s,     0.743 GFLOPS
+
+   job 264093: 
+      optimized:     2.706 s,    19.937 GFLOPS
+      your:          27.218 s,     1.982 GFLOPS
+      original:      173.436 s,     0.311 GFLOPS
+
+16. step - unrolling fourfold - 256 tile size
+   optimized:     0.584 s,    92.409 GFLOPS
+      your:    14.407 s,     3.744 GFLOPS
+   original:    70.092 s,     0.770 GFLOPS
+
+   job 264094:
+      optimized:     2.699 s,    19.990 GFLOPS
+      your:          26.796 s,     2.013 GFLOPS
+      original:      173.232 s,     0.311 GFLOPS
+
+17. step - unrolling 16 times - 256 tile size 
+   optimized:     0.611 s,    88.316 GFLOPS
+   your:    14.713 s,     3.667 GFLOPS
+
+18. step - unrolling 16 times - 512 tile size
+   optimized:     0.585 s,    92.170 GFLOPS
+   your:    16.788 s,     3.213 GFLOPS
+
+19. step - unrolling 32 times - 256 tile size
+   optimized:     0.568 s,    95.057 GFLOPS
+      your:    14.679 s,     3.675 GFLOPS
+   
+   job 264096:
+      optimized:     2.685 s,    20.094 GFLOPS
+      your:    26.334 s,     2.049 GFLOPS
+      original:   173.231 s,     0.311 GFLOPS
+
+20. step - unrolling 32 times - 128 tile size
+   optimized:     0.581 s,    92.847 GFLOPS
+      your:    14.808 s,     3.643 GFLOPS
+  original:    72.152 s,     0.748 GFLOPS
+
+21. step - unrolling 32 times - 1024 tile size
+   optimized:     0.580 s,    93.083 GFLOPS
+      your:    17.081 s,     3.158 GFLOPS
+
+22. step - unrolling 16 times - 256 tile size
+   job 264097:
+      optimized:     2.656 s,    20.314 GFLOPS
+      your:    25.357 s,     2.127 GFLOPS
+      original:   173.032 s,     0.312 GFLOPS
+
+23. step - unrolling 64 times - 256 tile size
+   optimized:     0.603 s,    89.399 GFLOPS
+   your:    15.237 s,     3.540 GFLOPS
+      job 264098:
+         optimized:     2.659 s,    20.287 GFLOPS
+         your:    26.645 s,     2.025 GFLOPS
+         original:   173.466 s,     0.311 GFLOPS
+24. step - unrolling 64 times - 512 tile size
+   optimized:     0.579 s,    93.204 GFLOPS
+   your:    17.247 s,     3.128 GFLOPS
+
+26. step - tile size 272
+    optimized:     0.565 s,    95.421 GFLOPS
+      your:    13.823 s,     3.903 GFLOPS
+   job 264102:
+      optimized:     2.658 s,    20.295 GFLOPS
+      your:    24.249 s,     2.225 GFLOPS
+      original:   172.959 s,     0.312 GFLOPS
+
+Tile-Testing
+======================================================================================
+  job id: 263669 - tiles=50
+      optimized:     2.635 s,    20.469 GFLOPS
+      your:    33.709 s,     1.600 GFLOPS
+      original:   173.041 s,     0.312 GFLOPS
+
+  job id: 263676 - tiles=30
+      optimized:     2.666 s,    20.234 GFLOPS
+      your:    35.300 s,     1.528 GFLOPS
+      original:   173.107 s,     0.312 GFLOPS
+
+job id: 263681 - tiles=130
+   optimized:     2.642 s,    20.421 GFLOPS
+      your:    31.358 s,     1.720 GFLOPS
+   original:   173.118 s,     0.312 GFLOPS
+   
+job: 263692 - tiles = sqrt(32000) - ikj rows
+   optimized:     2.653 s,    20.335 GFLOPS
+      your:    30.513 s,     1.768 GFLOPS
+   original:   173.146 s,     0.312 GFLOPS
+
+
+job: 263779 - tiles = 64/sizeof(double) - ikj rows - no variables
+   optimized:     2.660 s,    20.277 GFLOPS
+      your:    30.211 s,     1.786 GFLOPS
+   original:   173.010 s,     0.312 GFLOPS
+
+job ... - tiles = 64*sizeof(double) - ikj rows 
+   optimized:     2.690 s,    20.055 GFLOPS
+      your:    29.741 s,     1.814 GFLOPS
+   original:   173.114 s,     0.312 GFLOPS
+
+
+
