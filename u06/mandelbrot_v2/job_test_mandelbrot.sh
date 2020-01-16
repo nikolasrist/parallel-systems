@@ -14,7 +14,7 @@ module load gcc openmpi/gnu metis/5.1.0-32
 nprocs="2 3 5 9 17 33"
 
 # loop over all combinations of processor numbers
-NNODES=5
+NNODES=3
 
 # start here your program, for example an MPI program
 echo "running on " $NNODES " processors"

@@ -3,3 +3,50 @@ Do once a session:
 
 For your solution additionally:
     module load metis/5.1.0-32
+
+
+
+RESULTS: 
+===========================================
+Version 1
+===========================================
+running on  2  processors
+calculation took 140.62 s on 1+1 processors
+checksum = 37669340854
+running on  3  processors
+calculation took 100.88 s on 2+1 processors
+checksum = 37669340854
+running on  5  processors
+calculation took 86.07 s on 4+1 processors
+checksum = 37669340854
+running on  9  processors
+calculation took 55.15 s on 8+1 processors
+checksum = 37669340854
+running on  17  processors
+calculation took 33.38 s on 16+1 processors
+checksum = 37669340854
+running on  33  processors
+calculation took 19.35 s on 32+1 processors
+checksum = 37669340854
+
+===========================================
+Version 2
+===========================================
+running on  2  processors
+calculation v2 took 138.09 s on 1+1 processors
+checksum = 37669340854
+running on  3  processors
+calculation v2 took 69.63 s on 2+1 processors
+checksum = 37669340854
+running on  5  processors
+calculation v2 took 37.09 s on 4+1 processors
+checksum = 37669340854
+running on  9  processors
+calculation v2 took 18.90 s on 8+1 processors
+checksum = 37669340854
+running on  17  processors
+calculation v2 took 10.64 s on 16+1 processors
+checksum = 37669340854
+running on  33  processors
+calculation v2 took 5.93 s on 32+1 processors
+checksum = 37669340854
